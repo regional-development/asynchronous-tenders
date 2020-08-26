@@ -14,7 +14,7 @@ async def fetch(sem, session, url):
 
 
 async def fetch_all(urls, loop):
-    sem = asyncio.Semaphore(4)
+    sem = asyncio.BoundedSemaphore(2)
     async with aiohttp.ClientSession(loop=loop) as session:
         results = await asyncio.gather(
             *[fetch(sem, session, url) for url in urls]
