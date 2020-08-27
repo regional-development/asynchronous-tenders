@@ -15,7 +15,7 @@
 Після клонування репозиторію слід створити віртуальне середовище та встановити бібліотеки з `requirements.txt`
 ```bash
 $ python -m venv env
-$ source env/Scripts/activate
+$ env/Scripts/activate
 $ python -m pip install -r requirements.txt 
 ```
 
