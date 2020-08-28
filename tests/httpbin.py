@@ -5,9 +5,23 @@ import aiohttp
 from time import perf_counter 
 
 
-URLS = ["http://httpbin.org/anything"] * 100
+# URLS = ["http://httpbin.org/anything"] * 100
+URLS = ["https://httpbin.org/status/429"] * 5
 LIMIT = 5
-SLEEP_RANGE = 0.3, 0.8
+SLEEP_RANGE = 0.3, 0.9
+
+
+async def fetch_with_checks(sem, session, url):
+    try:
+        async with sem, session.get(url, raise_for_status=True) as response:
+            await asyncio.sleep(random.uniform(*SLEEP_RANGE))
+            with open("data.json", "wb") as out:
+                async for chunck in response.content.iter_chunked(4096):
+                    out.wirte(chunck)
+            logging.info(f"Успішно виконав запит: {url}")
+    except aiohttp.client_exceptions.ClientResponseError as exc:
+        logging.info(f"Помилка: {exc} для {url}")
+        await asyncio.sleep(60)
 
 
 async def fetch(sem, session, url):
@@ -18,6 +32,7 @@ async def fetch(sem, session, url):
             async for chunk in response.content.iter_chunked(4096):
                 out.write(chunk)
         logging.info("Записав файл")
+
 
 async def fetch_all(urls, loop):
     sem = asyncio.BoundedSemaphore(LIMIT)
