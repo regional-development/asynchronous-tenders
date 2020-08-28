@@ -13,7 +13,7 @@ SLEEP_RANGE = 0.4, 1
 async def fetch(sem, session, url):
     filename = url.split("/")[-1]
     async with sem, session.get(url) as response:
-        logging.info(f"зробив запит: {filename}")
+        # logging.info(f"зробив запит: {filename}")
         await asyncio.sleep(random.uniform(*SLEEP_RANGE))
         with open(f"data/{filename}.json", "wb") as out:
             async for chunk in response.content.iter_chunked(4096):
