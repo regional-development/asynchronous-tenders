@@ -6,7 +6,7 @@
 + [Usage](#usage)
 
 ## About <a name = "about"></a>
-Скрипт для асинхронного завантаження даних з АРІ прозоро в `.json`
+Скрипт для асинхронного завантаження даних з АРІ прозоро
 
 ## Getting Started <a name = "getting_started"></a>
 ### Інструкція щодо використання бібліотеки
@@ -16,21 +16,36 @@
 ```bash
 $ python -m venv env
 $ env/Scripts/activate
-$ python -m pip install -r requirements.txt 
+(env)$ python -m pip install -r requirements.txt 
 ```
 
 ## Usage <a name = "usage"></a>
-Заповнити `links.txt` унікальними ідентифікаторами тендерів, як-от:
-```
-efc53d5ccd244323a81b8b270eaa8217
-305b566b66964d5cbca003ec61d47b1c
-631a520e51cc4918b7d0ae1c2e1d36d6
-d0061a2d4d2d4d2dbfc988c656eb0946
-3346b06ea1cb4e6bb485333eec5a5e40
-```
-Після цього запустити скрипт з віртуального середовщиа
+Заповнити `links.csv` унікальними ідентифікаторами тендерів (`tender_id`) та статусом (`status`):
+
+|tender_id|status|
+|---------|------|
+|https://public.api.openprocurement.org/api/2.5/tenders/dfe1adc050ea4729832c6f148fd39555|0|
+|https://public.api.openprocurement.org/api/2.5/tenders/b8cc699d53ef45f6a7daaf3bd9e7f904|0|
+|https://public.api.openprocurement.org/api/2.5/tenders/7c685cb5459f4cae93c702923ee2525d|0|
+|https://public.api.openprocurement.org/api/2.5/tenders/400ae661a1d744988db3dd2c1e72c281|0|
+|https://public.api.openprocurement.org/api/2.5/tenders/b725907aac6b4883b5f345356b6a5cc7|0|
+
+
+Після цього запустити `main.py` з віртуального середовища
 ```bash
 (env)$ python main.py
 ```
 
-Відповіді АРІ будуть збережені у папку `data/`, в якій кожен файл буде названий за ідентифікатором тендера. 
+Скрипт відфільтрує тендери із `status == 0` і виконає `SAMPLE_SIZE` запитів (`150_000` за замовченням). 
+Відповіді АРІ будуть збережені у папку `data/` (кожна відповідь буде названа за ідентифікатором тендера, напр. `dfe1adc050ea4729832c6f148fd39555.json`). 
+
+У завантажених тендерів в оригінальній таблиці `links.csv` `status` зміниться на `1`, коли скрипт успішно завершиться: 
+
+
+|tender_id|status|
+|---------|------|
+|https://public.api.openprocurement.org/api/2.5/tenders/dfe1adc050ea4729832c6f148fd39555|1|
+|https://public.api.openprocurement.org/api/2.5/tenders/b8cc699d53ef45f6a7daaf3bd9e7f904|1|
+|https://public.api.openprocurement.org/api/2.5/tenders/7c685cb5459f4cae93c702923ee2525d|1|
+|https://public.api.openprocurement.org/api/2.5/tenders/400ae661a1d744988db3dd2c1e72c281|0|
+|https://public.api.openprocurement.org/api/2.5/tenders/b725907aac6b4883b5f345356b6a5cc7|0|

@@ -2,12 +2,14 @@ import random
 import logging
 import asyncio
 import aiohttp
+import pandas as pd
 from time import perf_counter 
 
 
 URL = "https://public.api.openprocurement.org/api/2.5/tenders/"
 LIMIT = 5
 SLEEP_RANGE = 0.4, 0.8
+SAMPLE_SIZE = 150_000
 
 
 async def fetch(sem, session, url):
@@ -43,17 +45,18 @@ if __name__ == '__main__':
         ]
     )
 
-    start = perf_counter()
-
-    with open("links.txt", "r") as ids_file:
-        tenders = ids_file.read().splitlines()
-    urls = [URL + tender_id for tender_id in tenders]
-    loop = asyncio.get_event_loop()
-    data = loop.run_until_complete(fetch_all(urls, loop))
+    df = pd.read_csv("./links_ok.csv")
+    sample = df.loc[df["status"].eq(0)].sample(SAMPLE_SIZE)["tender_id"]
     
-    stop = perf_counter() 
+    start = perf_counter()
+    loop = asyncio.get_event_loop()
+    data = loop.run_until_complete(fetch_all(sample, loop))
+    stop = perf_counter()
 
-    time, N = stop - start, len(urls)
+    df.loc[df["tender_id"].isin(sample), "status"] = 1
+    df.to_csv("./links_ok.csv", index=False)
+
+    time = stop - start 
     logging.info(
-        f"N: {N}, total time: {time:.2f}; {N/time:.2f}/1сек" 
+        f"N: {SAMPLE_SIZE}, total time: {time:.2f}; {SAMPLE_SIZE/time:.2f}/1сек" 
     )
