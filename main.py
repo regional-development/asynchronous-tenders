@@ -6,10 +6,9 @@ import pandas as pd
 from time import perf_counter 
 
 
-URL = "https://public.api.openprocurement.org/api/2.5/tenders/"
 LIMIT = 5
 SLEEP_RANGE = 0.4, 0.8
-SAMPLE_SIZE = 150_000
+SAMPLE_SIZE = 1_000_000
 
 
 async def fetch(sem, session, url):
@@ -32,7 +31,18 @@ async def fetch_all(urls, loop):
             *[fetch(sem, session, url) for url in urls]
         )
         return results
+    
+    
+def main():
+    df = pd.read_csv("./links.csv")
+    sample = df.loc[df["status"].eq(0)].sample(SAMPLE_SIZE)["tender_id"]
 
+    loop = asyncio.get_event_loop()
+    data = loop.run_until_complete(fetch_all(sample, loop))
+
+    df.loc[df["tender_id"].isin(sample), "status"] = 1
+    df.to_csv("./links.csv", index=False)
+    
 
 if __name__ == '__main__':
     
@@ -45,16 +55,9 @@ if __name__ == '__main__':
         ]
     )
 
-    df = pd.read_csv("./links_ok.csv")
-    sample = df.loc[df["status"].eq(0)].sample(SAMPLE_SIZE)["tender_id"]
-    
     start = perf_counter()
-    loop = asyncio.get_event_loop()
-    data = loop.run_until_complete(fetch_all(sample, loop))
+    main()
     stop = perf_counter()
-
-    df.loc[df["tender_id"].isin(sample), "status"] = 1
-    df.to_csv("./links_ok.csv", index=False)
 
     time = stop - start 
     logging.info(
