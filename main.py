@@ -20,8 +20,8 @@ async def fetch(sem, session, url):
     async with sem, session.get(url, raise_for_status=True) as response:
         await asyncio.sleep(random.uniform(*SLEEP_RANGE))
         with open(DATA / f"{filename}.json", "wb") as out:
-            async for chunck in response.content.iter_chunked(4096):
-                out.write(chunck)
+            async for chunk in response.content.iter_chunked(4096):
+                out.write(chunk)
 
 
 async def fetch_all(urls, loop):
