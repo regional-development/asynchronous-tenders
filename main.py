@@ -12,7 +12,6 @@ DATA = PATH / "data"
 
 TIMEOUT = 60
 SLEEP_RANGE = 0.4, 0.8
-SAMPLE_SIZE = 1000
 CONCURRENT_CONNECTIONS = 5
 
 
@@ -63,7 +62,7 @@ if __name__ == '__main__':
 
     already_downloaded = [f.parts[-1].split(".")[0] for f in DATA.rglob("*.json")]
     df = pd.read_csv(PATH / "links.csv")
-    sample = df.loc[df["status"].eq(0)].sample(SAMPLE_SIZE)["tender_id"]
+    sample = df.loc[df["status"].eq(0)]["tender_id"]
 
     logging.info("Починаю виконувати запити")
     start = perf_counter()
@@ -87,3 +86,4 @@ if __name__ == '__main__':
         f"Завантажив {N} тендерів за {time:.2f}s; {N/time:.2f}/1сек" 
     )
     logging.info("Закінчив виконувати скрипт \n")
+
