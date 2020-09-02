@@ -1,12 +1,85 @@
-2020-08-27 11:01:19,376 [INFO]: 48.69s для 1000 тендерів при BoundedSemaphore(2); 20.54 запитів в секунду
-2020-08-27 11:19:41,188 [INFO]: 17.97s для 1000 тендерів при BoundedSemaphore(5); 55.65 запитів в секунду
-2020-08-27 11:24:26,432 [INFO]: 9.47s для 1000 тендерів при BoundedSemaphore(10); 105.61 запитів в секунду
-2020-08-27 11:26:28,441 [INFO]: 15.15s для 1000 тендерів при BoundedSemaphore(20); 65.99 запитів в секунду
-2020-08-27 11:29:11,540 [INFO]: 13.30s для 1000 тендерів при BoundedSemaphore(50); 75.19 запитів в секунду
-2020-08-27 12:20:17,130 [INFO]: 41.65s для 1000 тендерів при Semaphore(2); 24.01 запитів в секунду
-2020-08-27 12:20:57,741 [INFO]: 19.01s для 1000 тендерів при Semaphore(5); 52.61 запитів в секунду
-2020-08-27 12:22:25,154 [INFO]: 9.05s для 1000 тендерів при Semaphore(10); 110.46 запитів в секунду
-2020-08-27 12:22:53,249 [INFO]: 14.15s для 1000 тендерів при Semaphore(20); 70.66 запитів в секунду
-2020-08-27 12:23:50,451 [INFO]: 12.56s для 1000 тендерів при Semaphore(50); 79.63 запитів в секунду
-2020-08-31 11:46:39,954 [INFO]: N: 100, total time: 13.47; 7.43/1сек
-2020-08-31 17:39:13,151 [INFO]: N: 150000, total time: 20924.22; 7.17/1сек
+2020-09-02 12:45:34,173 [INFO]: Починаю виконувати скрипт
+2020-09-02 12:45:34,174 [INFO]: Починаю виконувати запити
+2020-09-02 12:45:35,362 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:35,373 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:35,378 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:45:35,383 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:35,452 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:35,944 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:36,001 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:36,015 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:36,183 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:36,611 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 3
+2020-09-02 12:45:36,678 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:36,822 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:37,048 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:37,295 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:37,684 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:37,933 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:38,128 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:38,543 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:38,658 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:45:38,917 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:39,458 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:39,803 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:40,244 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:45:40,407 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:41,332 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:41,903 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:42,636 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:43,315 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:44,171 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:44,722 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:45,512 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:46,221 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:45:47,058 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:46:36,545 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:46:37,280 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 2
+2020-09-02 12:46:39,609 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:46:41,016 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:46:47,852 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:47:37,908 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:47:38,437 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 1
+2020-09-02 12:47:40,480 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:47:41,841 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:47:48,446 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:48:37,889 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:48:38,438 [INFO]: Не записав файл для https://httpbin.org/status/429, counter: 0, fetched: False
+2020-09-02 12:48:38,873 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:39,060 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:39,580 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:40,215 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:40,410 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 3
+2020-09-02 12:48:40,474 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:48:40,935 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:41,203 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:41,820 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:41,852 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:48:41,872 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:42,411 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:42,653 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:42,655 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:43,162 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:43,261 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:43,419 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:43,709 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:43,810 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:44,104 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:44,376 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:48:44,427 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:44,971 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:45,011 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:45,606 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:45,811 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 3
+2020-09-02 12:48:46,320 [INFO]: Успішно записав файл для https://httpbin.org/status/200
+2020-09-02 12:48:48,445 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:49:41,468 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 2
+2020-09-02 12:49:45,126 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:49:46,511 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 2
+2020-09-02 12:50:42,649 [INFO]: Не зумів викнати запит для https://httpbin.org/status/429, лягаю спати: counter 1
+2020-09-02 12:50:45,730 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:50:47,409 [INFO]: Не зумів викнати запит для https://httpbin.org/status/502, лягаю спати: counter 1
+2020-09-02 12:51:42,646 [INFO]: Не записав файл для https://httpbin.org/status/429, counter: 0, fetched: False
+2020-09-02 12:51:45,725 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:51:47,409 [INFO]: Не записав файл для https://httpbin.org/status/502, counter: 0, fetched: False
+2020-09-02 12:51:47,409 [INFO]: Виконав усі запити

@@ -10,22 +10,36 @@ from time import perf_counter
 PATH = Path(__file__).resolve().parent
 DATA = PATH / "data"
 
-LIMIT = 5
+TIMEOUT = 60
 SLEEP_RANGE = 0.4, 0.8
-SAMPLE_SIZE = 150_000
+CONCURRENT_CONNECTIONS = 5
 
 
 async def fetch(sem, session, url):
     filename = url.split("/")[-1]
-    async with sem, session.get(url, raise_for_status=True) as response:
-        await asyncio.sleep(random.uniform(*SLEEP_RANGE))
-        with open(DATA / f"{filename}.json", "wb") as out:
-            async for chunk in response.content.iter_chunked(4096):
-                out.write(chunk)
+    fetched, counter = False, 3
+    while not fetched:
+        async with sem:
+            try:
+                await asyncio.sleep(random.uniform(*SLEEP_RANGE))
+                async with session.get(url, raise_for_status=True) as response:
+                    with open(DATA / f"{filename}.json", "wb") as out:
+                        async for chunk in response.content.iter_chunked(4096):
+                            out.write(chunk)
+                    fetched = True
+            except (
+                aiohttp.client_exceptions.ClientOSError,
+                aiohttp.client_exceptions.ClientResponseError
+            ):
+                await asyncio.sleep(TIMEOUT)
+                counter -= 1
+                if counter < 1:
+                    logging.info(f"Помилка: {filename}")
+                    break 
 
 
 async def fetch_all(urls, loop):
-    sem = asyncio.BoundedSemaphore(LIMIT)
+    sem = asyncio.BoundedSemaphore(CONCURRENT_CONNECTIONS)
     async with aiohttp.ClientSession(loop=loop) as session:
         results = await asyncio.gather(
             *[fetch(sem, session, url) for url in urls]
@@ -34,7 +48,7 @@ async def fetch_all(urls, loop):
     
 
 if __name__ == '__main__':
-    
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s]: %(message)s",
@@ -48,7 +62,7 @@ if __name__ == '__main__':
 
     already_downloaded = [f.parts[-1].split(".")[0] for f in DATA.rglob("*.json")]
     df = pd.read_csv(PATH / "links.csv")
-    sample = df.loc[df["status"].eq(0)].sample(SAMPLE_SIZE)["tender_id"]
+    sample = df.loc[df["status"].eq(0)]["tender_id"]
 
     logging.info("Починаю виконувати запити")
     start = perf_counter()
@@ -72,3 +86,4 @@ if __name__ == '__main__':
         f"Завантажив {N} тендерів за {time:.2f}s; {N/time:.2f}/1сек" 
     )
     logging.info("Закінчив виконувати скрипт \n")
+
