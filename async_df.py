@@ -3,6 +3,7 @@ import asyncio
 import aiohttp
 import pandas as pd
 from pathlib import Path
+from datetime import datetime
 
 
 PATH = Path(__file__).resolve().parent
@@ -18,7 +19,8 @@ async def fetch(sem, session, url):
         data = await response.json()
         return {
             "ProzorroTenderID": url.split("/")[-1], 
-            "JSON_Value": data.get("data", "error")
+            "JSON_Value": data.get("data", "error"),
+            "DateInserted": pd.to_datetime(datetime.now()),
         } 
 
 
