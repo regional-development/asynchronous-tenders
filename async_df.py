@@ -1,3 +1,4 @@
+import json
 import random
 import asyncio
 import aiohttp
@@ -11,6 +12,7 @@ INPUTS = PATH / "sample.csv"
 OUTPUTS = PATH / "output_table.csv"
 SLEEP_RANGE = 0.6, 0.7
 CONCURRENT_CONNECTIONS = 5
+ERROR_MSG = "AN ERROR HAS OCCURED REMOVE ROW"
 
 
 async def fetch(sem, session, url):
@@ -19,9 +21,8 @@ async def fetch(sem, session, url):
         data = await response.json()
         return {
             "ProzorroTenderID": url.split("/")[-1], 
-            "JSON_Value": data.get("data", "error"),
-            "DateInserted": pd.to_datetime(datetime.now()),
-        } 
+            "JSON_Value": json.dumps(data.get("data", ERROR_MSG))
+        }
 
 
 async def fetch_all(urls, loop):
@@ -31,7 +32,7 @@ async def fetch_all(urls, loop):
             *[fetch(sem, session, url) for url in urls]
         )
         df = pd.DataFrame(results)
-        return df.loc[df["JSON_Value"].ne("error")]
+        return df.loc[~df["JSON_Value"].str.contains(ERROR_MSG)]
 
 
 def read_tenders():
