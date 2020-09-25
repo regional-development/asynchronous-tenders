@@ -49,11 +49,3 @@ $ env/Scripts/activate
 |https://public.api.openprocurement.org/api/2.5/tenders/7c685cb5459f4cae93c702923ee2525d|1|
 |https://public.api.openprocurement.org/api/2.5/tenders/400ae661a1d744988db3dd2c1e72c281|0|
 |https://public.api.openprocurement.org/api/2.5/tenders/b725907aac6b4883b5f345356b6a5cc7|0|
-
-
----
-
-# TO-DO
-* [ ] Виправити `aiohttp.client_exceptions.ServerDisconnectedError`
-* [ ] Налаштувати аналог cron для windows server
-* [ ] Визначити оптимальний ліміт на запити в секунду
